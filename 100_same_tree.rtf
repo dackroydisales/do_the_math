@@ -1,0 +1,108 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2577
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Medium;\f1\fnil\fcharset0 HelveticaNeue;\f2\fmodern\fcharset0 Courier;
+\f3\fnil\fcharset0 Menlo-Bold;\f4\fnil\fcharset0 Menlo-Regular;\f5\fnil\fcharset0 HelveticaNeue-Bold;
+}
+{\colortbl;\red255\green255\blue255;\red25\green25\blue25;\red255\green255\blue255;\red55\green146\blue55;
+\red67\green91\blue103;\red29\green38\blue42;\red245\green247\blue249;}
+{\*\expandedcolortbl;;\cssrgb\c12941\c12941\c12941;\cssrgb\c100000\c100000\c100000;\cssrgb\c26275\c62745\c27843;
+\cssrgb\c32941\c43137\c47843;\cssrgb\c14902\c19608\c21961;\cssrgb\c96863\c97647\c98039;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs32 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 100.\'a0Same Tree\cb1 \
+\pard\pardeftab720\sl400\partightenfactor0
+
+\b0\fs26 \cf4 \cb3 \strokec4 Easy\cb1 \
+\pard\pardeftab720\sl340\qc\partightenfactor0
+
+\f1\fs24 \cf5 \strokec5 \
+\pard\pardeftab720\sl340\qc\partightenfactor0
+\cf5 \cb3 2848\cb1 \
+\
+\cb3 76\cb1 \
+\
+\cb3 Add to List\cb1 \
+\
+\cb3 Share\cb1 \
+\pard\pardeftab720\sa280\partightenfactor0
+
+\fs28 \cf6 \cb3 \strokec6 Given the roots of two binary trees\'a0
+\f2\fs26 \cf5 \cb7 \strokec5 p
+\f1\fs28 \cf6 \cb3 \strokec6 \'a0and\'a0
+\f2\fs26 \cf5 \cb7 \strokec5 q
+\f1\fs28 \cf6 \cb3 \strokec6 , write a function to check if they are the same or not.\cb1 \
+\cb3 Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.\cb1 \
+\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f3\b\fs26 \cf6 \cb7 Input:
+\f4\b0  p = [1,2,3], q = [1,2,3]\
+
+\f3\b Output:
+\f4\b0  true\
+\
+
+\f3\b Input:
+\f4\b0  p = [1,2], q = [1,null,2]\
+
+\f3\b Output:
+\f4\b0  false\
+\
+
+\f3\b Input:
+\f4\b0  p = [1,2,1], q = [1,1,2]\
+
+\f3\b Output:
+\f4\b0  false\
+\
+\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f5\b\fs28 \cf6 \cb3 Constraints:
+\f1\b0 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0\cf6 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 The number of nodes in both trees is in the range\'a0
+\f2\fs26 \cf5 \cb7 \strokec5 [0, 100]
+\f1\fs28 \cf6 \cb3 \strokec6 .\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0
+\f2\fs26 \cf5 \cb7 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 -10
+\fs19\fsmilli9750 4
+\fs26 \'a0<= Node.val <= 10
+\fs19\fsmilli9750 4
+\f1\fs28 \cf6 \cb1 \strokec6 \
+\pard\tx720\pardeftab720\partightenfactor0
+\cf6 \
+\
+/**\
+ * Definition for a binary tree node.\
+ * function TreeNode(val, left, right) \{\
+ *     this.val = (val===undefined ? 0 : val)\
+ *     this.left = (left===undefined ? null : left)\
+ *     this.right = (right===undefined ? null : right)\
+ * \}\
+ */\
+/**\
+ * @param \{TreeNode\} p\
+ * @param \{TreeNode\} q\
+ * @return \{boolean\}\
+ */\
+var isSameTree = function(p, q) \{\
+    if(!p || !q)\
+    \{\
+        return p === q;\
+    \}\
+    if(!(p.left || p.right) || !(q.left || q.right))\
+    \{\
+        if(p.left || p.right || q.left || q.right)\{return false;\}\
+        return p.val === q.val;\
+    \}\
+    if(p.val !== q.val)\{return false;\}\
+    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);\
+\};}
