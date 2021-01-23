@@ -1,0 +1,112 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2577
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Medium;\f1\fnil\fcharset0 HelveticaNeue;\f2\fmodern\fcharset0 Courier;
+\f3\fnil\fcharset0 HelveticaNeue-Bold;\f4\fnil\fcharset0 Menlo-Bold;\f5\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red25\green25\blue25;\red255\green255\blue255;\red55\green146\blue55;
+\red67\green91\blue103;\red29\green38\blue42;\red245\green247\blue249;}
+{\*\expandedcolortbl;;\cssrgb\c12941\c12941\c12941;\cssrgb\c100000\c100000\c100000;\cssrgb\c26275\c62745\c27843;
+\cssrgb\c32941\c43137\c47843;\cssrgb\c14902\c19608\c21961;\cssrgb\c96863\c97647\c98039;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs32 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 14.\'a0Longest Common Prefix\cb1 \
+\pard\pardeftab720\sl400\partightenfactor0
+
+\b0\fs26 \cf4 \cb3 \strokec4 Easy\cb1 \
+\pard\pardeftab720\sl340\qc\partightenfactor0
+
+\f1\fs24 \cf5 \strokec5 \
+\pard\pardeftab720\sl340\qc\partightenfactor0
+\cf5 \cb3 3578\cb1 \
+\
+\cb3 2096\cb1 \
+\
+\cb3 Add to List\cb1 \
+\
+\cb3 Share\cb1 \
+\pard\pardeftab720\sa280\partightenfactor0
+
+\fs28 \cf6 \cb3 \strokec6 Write a function to find the longest common prefix string amongst an array of strings.\cb1 \
+\cb3 If there is no common prefix, return an empty string\'a0
+\f2\fs26 \cf5 \cb7 \strokec5 ""
+\f1\fs28 \cf6 \cb3 \strokec6 .\cb1 \
+\cb3 \'a0\cb1 \
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f3\b \cf6 \cb3 Example 1:
+\f1\b0 \cb1 \
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f4\b\fs26 \cf6 \cb7 Input:
+\f5\b0  strs = ["flower","flow","flight"]\
+
+\f4\b Output:
+\f5\b0  "fl"\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f3\b\fs28 \cf6 \cb3 Example 2:
+\f1\b0 \cb1 \
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f4\b\fs26 \cf6 \cb7 Input:
+\f5\b0  strs = ["dog","racecar","car"]\
+
+\f4\b Output:
+\f5\b0  ""\
+
+\f4\b Explanation:
+\f5\b0  There is no common prefix among the input strings.\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f1\fs28 \cf6 \cb3 \'a0\cb1 \
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f3\b \cf6 \cb3 Constraints:
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0
+\f2\fs26 \cf5 \cb7 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 0 <= strs.length <= 200
+\f1\fs28 \cf6 \cb1 \strokec6 \
+\ls1\ilvl0
+\f2\fs26 \cf5 \cb7 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 0 <= strs[i].length <= 200
+\f1\fs28 \cf6 \cb1 \strokec6 \
+\ls1\ilvl0
+\f2\fs26 \cf5 \cb7 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 strs[i]
+\f1\fs28 \cf6 \cb3 \strokec6 \'a0consists of only lower-case English letters.\cb1 \
+\pard\tx720\pardeftab720\partightenfactor0
+\cf6 \
+\
+\
+\
+/**\
+ * @param \{string[]\} strs\
+ * @return \{string\}\
+ */\
+var longestCommonPrefix = function(strs) \
+\{\
+    let return_prefix = "";\
+    minlength = Number.POSITIVE_INFINITY;\
+    for(const str of strs)\{\
+        if(str.length < minlength)\
+        \{\
+            minlength = str.length;\
+        \}\
+    \}\
+    for(let i = 0; i < minlength && strs.length > 0; i++)\
+    \{\
+        let char = strs[0].charAt(i);\
+        for(const str of strs)\
+        \{\
+            if(str.charAt(i) !== char)\{return return_prefix;\}\
+        \}\
+        return_prefix = return_prefix.concat(char);\
+    \}\
+    return return_prefix;\
+\};}
