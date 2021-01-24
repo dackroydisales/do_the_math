@@ -1,0 +1,154 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2577
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Medium;\f1\fnil\fcharset0 HelveticaNeue;\f2\fmodern\fcharset0 Courier;
+\f3\fnil\fcharset0 HelveticaNeue-Italic;\f4\fnil\fcharset0 HelveticaNeue-Bold;\f5\fnil\fcharset0 Menlo-Bold;
+\f6\fnil\fcharset0 Menlo-Regular;\f7\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red25\green25\blue25;\red255\green255\blue255;\red55\green146\blue55;
+\red67\green91\blue103;\red29\green38\blue42;\red245\green247\blue249;}
+{\*\expandedcolortbl;;\cssrgb\c12941\c12941\c12941;\cssrgb\c100000\c100000\c100000;\cssrgb\c26275\c62745\c27843;
+\cssrgb\c32941\c43137\c47843;\cssrgb\c14902\c19608\c21961;\cssrgb\c96863\c97647\c98039;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs32 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 67.\'a0Add Binary\cb1 \
+\pard\pardeftab720\sl400\partightenfactor0
+
+\b0\fs26 \cf4 \cb3 \strokec4 Easy\cb1 \
+\pard\pardeftab720\sl340\qc\partightenfactor0
+
+\f1\fs24 \cf5 \strokec5 \
+\cb3 2456\cb1 \
+\
+\cb3 319\cb1 \
+\
+\cb3 Add to List\cb1 \
+\
+\cb3 Share\cb1 \
+\pard\pardeftab720\sa280\partightenfactor0
+
+\fs28 \cf6 \cb3 \strokec6 Given two binary strings\'a0
+\f2\fs26 \cf5 \cb7 \strokec5 a
+\f1\fs28 \cf6 \cb3 \strokec6 \'a0and\'a0
+\f2\fs26 \cf5 \cb7 \strokec5 b
+\f1\fs28 \cf6 \cb3 \strokec6 , return\'a0
+\f3\i their sum as a binary string
+\f1\i0 .\cb1 \
+\cb3 \'a0\cb1 \
+
+\f4\b \cb3 Example 1:
+\f1\b0 \cb1 \
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f5\b\fs26 \cf6 \cb7 Input:
+\f6\b0  a = "11", b = "1"\
+
+\f5\b Output:
+\f6\b0  "100"\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f4\b\fs28 \cf6 \cb3 Example 2:
+\f1\b0 \cb1 \
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f5\b\fs26 \cf6 \cb7 Input:
+\f6\b0  a = "1010", b = "1011"\
+
+\f5\b Output:
+\f6\b0  "10101"\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f1\fs28 \cf6 \cb3 \'a0\cb1 \
+
+\f4\b \cb3 Constraints:
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0
+\f2\fs26 \cf5 \cb7 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 1 <= a.length, b.length <= 10
+\fs19\fsmilli9750 4
+\f1\fs28 \cf6 \cb1 \strokec6 \
+\ls1\ilvl0
+\f2\fs26 \cf5 \cb7 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 a
+\f1\fs28 \cf6 \cb3 \strokec6 \'a0and\'a0
+\f2\fs26 \cf5 \cb7 \strokec5 b
+\f1\fs28 \cf6 \cb3 \strokec6 \'a0consist\'a0only of\'a0
+\f2\fs26 \cf5 \cb7 \strokec5 '0'
+\f1\fs28 \cf6 \cb3 \strokec6 \'a0or\'a0
+\f2\fs26 \cf5 \cb7 \strokec5 '1'
+\f1\fs28 \cf6 \cb3 \strokec6 \'a0characters.\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 Each string does not contain leading zeros except for the zero itself.\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f7\fs24 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+\'97\'97\
+\
+/**\
+ * @param \{string\} a\
+ * @param \{string\} b\
+ * @return \{string\}\
+ */\
+var addBinary = function(a, b) \{\
+    let return_string = "";\
+    let carry = false;\
+    while(a.length && b.length)\
+    \{\
+        if(a.charAt(a.length - 1) === "1" && b.charAt(b.length - 1) === "1")\
+        \{\
+            if(carry === true)\
+            \{\
+                return_string = "1".concat(return_string);\
+            \} else\
+            \{\
+                return_string = "0".concat(return_string);\
+            \}\
+            carry = true;\
+        \} else if(a.charAt(a.length - 1) === "1" || b.charAt(b.length - 1) === "1")\
+        \{\
+            if(carry === true)\
+            \{\
+                return_string = "0".concat(return_string);\
+            \} else\
+            \{\
+                return_string = "1".concat(return_string);\
+            \}\
+        \} else \{\
+            if(carry === true)\
+            \{\
+                return_string = "1".concat(return_string);\
+                carry = false;\
+            \} else\
+            \{\
+                return_string = "0".concat(return_string);\
+            \}\
+        \}\
+        a = a.slice(0, a.length - 1);\
+        b = b.slice(0, b.length - 1);\
+    \}\
+    \
+    let temp = a.length > 0 ? a : b;\
+    while(temp.length)\
+    \{\
+        if(carry === true)\
+        \{\
+            if(temp.charAt(temp.length - 1) === "1")\
+            \{\
+                return_string = "0".concat(return_string);\
+            \} else \{\
+                return_string = "1".concat(return_string);\
+                carry = false;\
+            \}\
+        \} else \{return_string = temp.charAt(temp.length - 1).concat(return_string);\}\
+        temp = temp.slice(0, temp.length - 1);\
+    \}\
+    if(carry === true)\
+    \{\
+        return_string = "1".concat(return_string);\
+    \}\
+    return return_string;\
+\};}
