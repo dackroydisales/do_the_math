@@ -1,0 +1,153 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2577
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fmodern\fcharset0 Courier;\f2\fmodern\fcharset0 Courier-Oblique;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red29\green29\blue31;\red29\green29\blue31;
+}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c14902\c15294\c16078;\cssrgb\c14902\c15294\c16078;
+}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://www.codewars.com/kata/51c8e37cee245da6b40000bd"}}{\fldrslt 
+\f0\fs33\fsmilli16800 \cf2 \cb3 \expnd0\expndtw0\kerning0
+Strip Comments}}
+\f1\fs21 \cf2 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 \
+function solution(input, markers) \{\
+  let return_string = "";\
+  let commented = false;\
+  for(let i = 0; i < input.length; i++)\
+  \{\
+    if(input[i] === "\\n")\
+    \{\
+      return_string = return_string.trim();\
+      return_string += "\\n";\
+      commented = false;\
+    \} else if(markers.includes(input[i]))\
+    \{\
+      commented = true; \
+    \} else if(commented === false)\
+    \{\
+      return_string += input[i];\
+    \}\
+  \}\
+  return return_string.trim();\
+\};\
+\
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://www.codewars.com/kata/5547cc7dcad755e480000004"}}{\fldrslt 
+\f0\fs33\fsmilli16800 \cf2 \cb3 Is my friend cheating?}}\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 \
+function removeNb (n) \{\
+  let initial_sum = (n+1)*(n/2)\
+  return_ary = []\
+  for(let i = 2; i < n; i++)\
+  \{\
+    let j = (initial_sum - i)/(i + 1);\
+    if(Math.floor(j) === j && j < n)\
+    \{\
+      return_ary.push([i, j]);\
+    \}\
+  \}\
+  return return_ary;\
+\}\
+\
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://www.codewars.com/kata/55aa075506463dac6600010d"}}{\fldrslt 
+\f0\fs33\fsmilli16800 \cf2 \cb3 Integers: Recreation One}}\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 \
+function divisors(n)\
+\{\
+  let return_ary = [];\
+  for(let i = 1; i <= n; i++)\
+  \{\
+    if(n % i === 0)\
+    \{\
+      return_ary.push(i);\
+    \}\
+  \}\
+  return return_ary;\
+\}\
+\
+function is_square(n)\
+\{\
+  let i = 1;\
+  while(i * i < n)\{i++;\}\
+  if(i * i === n)\{return true;\}\
+  return false;\
+\}\
+\
+function listSquared(m, n) \
+\{\
+  let return_ary = [];\
+  for(let i = m; i <= n; i++)\
+  \{\
+    let sum_of_squared_divisors = divisors(i).reduce((total, next) => total + next * next, 0);\
+\pard\pardeftab720\sl210\partightenfactor0
+
+\f2\i \cf2 //     console.log(sum_of_squared_divisors)
+\f1\i0 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2     if(is_square(sum_of_squared_divisors))\{return_ary.push([i, sum_of_squared_divisors]);\}\
+  \}\
+  return return_ary;\
+\}\
+\
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://www.codewars.com/kata/559a28007caad2ac4e000083"}}{\fldrslt 
+\f0\fs33\fsmilli16800 \cf2 \cb3 Perimeter of squares in a rectangle}}\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 \
+function perimeter(n) \{\
+  if(n === 0)\{return 4;\}\
+  if(n === 1)\{return 8;\}\
+  let fibo = [4, 4]  \
+  let sum = 8;\
+  for(let i = 2; i <= n; i++)\
+  \{\
+    fibo.push(fibo[i - 1] + fibo[i - 2])\
+  \}\
+  return fibo.reduce((a, b) => a + b);\
+\}\
+\
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://www.codewars.com/kata/52742f58faf5485cae000b9a"}}{\fldrslt 
+\f0\fs33\fsmilli16800 \cf2 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Human readable duration format}}\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 function formatDuration (seconds) \{\
+  if(seconds === 0)\{return "now";\}\
+  let return_string = "";\
+  let times = [" years", " days", " hours", " minutes", " seconds"];\
+  let counters = Array(5).fill(0);\
+  \
+  counters[0] = Math.floor(seconds / (60 * 60 * 24 * 365));\
+  counters[1] = Math.floor(seconds / (60 * 60 * 24)) % (365);\
+  counters[2] = Math.floor(seconds / (60 * 60)) % (24);\
+  counters[3] = Math.floor(seconds / (60)) % (60);\
+  counters[4] = seconds % 60;\
+  let first_value = true;\
+  let total_count = counters.reduce((a, b) => a + b);\
+  for(let i = 0; i < 5; i++)\
+  \{\
+    if(counters[i] > 0)\
+    \{\
+      if(first_value)\{return_string += counters[i] + times[i]; first_value = false;\}\
+      else\{\
+        if(total_count === counters[i])\{return_string += " and " + counters[i] + times[i];\}\
+        else\{return_string += ", " + counters[i] + times[i]\}\
+      \}\
+      if(counters[i] === 1)\{return_string = return_string.slice(0, return_string.length - 1)\}\
+      total_count -= counters[i];\
+    \}\
+  \}\
+  return return_string;\
+\}\
+}
