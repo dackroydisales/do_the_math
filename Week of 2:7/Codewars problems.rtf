@@ -1,0 +1,84 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2578
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fmodern\fcharset0 Courier;\f2\fmodern\fcharset0 Courier-Oblique;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red29\green29\blue31;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c14902\c15294\c16078;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://www.codewars.com/kata/52bc74d4ac05d0945d00054e"}}{\fldrslt 
+\f0\fs33\fsmilli16800 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 First non-repeating character}}
+\f1\fs21 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 \
+function firstNonRepeatingLetter(s) \{\
+  let myTally = \{\}\
+  for(let i = 0; i < s.length; i++)\
+  \{\
+    if(myTally[s[i]] === undefined)\{myTally[s[i].toLowerCase()] = 0; myTally[s[i].toUpperCase()] = 0;\}\
+    else\{myTally[s[i].toLowerCase()] = 1; myTally[s[i].toUpperCase()] = 1;\}\
+  \}\
+\
+  for(let i = 0; i < s.length; i++)\
+  \{\
+    if(myTally[s[i]] === 0)\
+    \{\
+      return s[i];\
+    \}\
+  \}\
+  return "";\
+\}\
+\
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://www.codewars.com/kata/55c6126177c9441a570000cc"}}{\fldrslt 
+\f0\fs33\fsmilli16800 \cf2 \cb3 Weight for weight}}\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 \
+function orderWeight(strng) \{\
+  let return_ary = [];\
+  let new_weights = [];\
+  let weights = strng.split(" ");\
+  \
+  for(let i = 0; i < weights.length; i++)\
+  \{\
+    new_weights.push(sum_of_digits(weights[i]));\
+  \}\
+  for(let j = 0; j < new_weights.length; j++)\
+  \{\
+    let index = 0;\
+    let min_val = Number.POSITIVE_INFINITY;\
+    
+\f2\i //find smallest remaining index
+\f1\i0 \
+    for(let i = 0; i < new_weights.length; i++)\
+    \{\
+      if(new_weights[i] < min_val)\
+      \{\
+        min_val = new_weights[i];\
+        index = i;\
+      \} else if(new_weights[i] === min_val)
+\f2\i //handle ties by alphabetical string comparison
+\f1\i0 \
+      \{\
+        if(weights[i] < weights[index])\
+        \{\
+          min_val = new_weights[i];\
+          index = i;\
+        \}\
+      \}\
+    \}\
+    new_weights[index] = Number.POSITIVE_INFINITY;\
+    return_ary.push(weights[index]);\
+    \
+  \}\
+   return return_ary.join(" "); \
+\}\
+\
+function sum_of_digits(str_weight)\
+\{\
+  let weight_digits = str_weight.split("");\
+  return weight_digits.reduce((acc, digit) => acc += Number(digit), 0)\
+\}\
+}

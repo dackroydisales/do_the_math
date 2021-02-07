@@ -1,0 +1,285 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2578
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 https://leetcode.com/problems/climbing-stairs/\
+\
+var climbStairs = function(n, memo = []) \{\
+    if(n in memo)\{return memo[n];\}\
+    if(n === 0 || n === 1)\{return 1;\}\
+    memo[n] = climbStairs(n - 1, memo) + climbStairs(n - 2, memo);\
+    return memo[n]\
+\};\
+\
+\
+\
+https://leetcode.com/problems/remove-duplicates-from-sorted-list/\
+\
+var deleteDuplicates = function(head) \
+\{\
+    if(!head)\{return head;\}\
+    let my_node = head;\
+    while(my_node.next !== null)\
+    \{\
+        while(my_node.next !== null && my_node.next.val === my_node.val)\
+        \{\
+            my_node.next = my_node.next.next;\
+        \}\
+        if(my_node.next !== null)\
+        \{\
+            my_node = my_node.next\
+        \}\
+    \}\
+    return head;\
+\};\
+\
+https://leetcode.com/problems/merge-sorted-array/\
+\
+var merge = function(nums1, m, nums2, n) \{\
+    let temp = Array(m+n);\
+    let one_index = 0;\
+    let two_index = 0;\
+    for(let i = 0; i < m + n; i++)\
+    \{\
+        if(one_index < m && two_index < n)\
+        \{\
+            if(nums1[one_index] <= nums2[two_index])\
+            \{\
+                temp[i] = nums1[one_index];\
+                one_index++;\
+            \} else\
+            \{\
+                temp[i] = nums2[two_index];\
+                two_index++;\
+            \}\
+        \} else\
+        \{\
+            if(one_index < m)\
+            \{\
+                temp[i] = nums1[one_index];\
+                one_index++;\
+            \} else\
+            \{\
+                temp[i] = nums2[two_index];\
+                two_index++;\
+            \}\
+        \}\
+    \}\
+    for(let i = 0; i < m + n; i++)\
+    \{\
+        nums1[i] = temp[i];\
+    \}\
+\};\
+\
+\
+https://leetcode.com/problems/maximum-depth-of-binary-tree/\
+\
+var maxDepth = function(root) \
+\{\
+    if(root === null)\{return 0;\}\
+    return 1 + Math.max(maxDepth(root.left), maxDepth(root.right))\
+\};\
+\
+\
+\
+https://leetcode.com/problems/symmetric-tree/\
+\
+iterative solution\
+\
+var isSymmetric = function(root) \
+\{\
+    if(root === null)\{return true;\}\
+    let left_queue = [root.left];\
+    let right_queue = [root.right];\
+    while(left_queue.length > 0 || right_queue.length > 0)\
+    \{\
+        left_node = left_queue.pop();\
+        right_node = right_queue.pop();\
+        if((left_node !== null || right_node !== null) && (left_node === null || right_node === null))\
+        \{\
+            return false;\
+        \} else if(left_node && right_node && left_node.val !== right_node.val)\
+        \{\
+            return false;\
+        \}\
+        if(left_node)\{left_queue.push(left_node.left);left_queue.push(left_node.right);\}\
+        if(right_node)\{right_queue.push(right_node.right);right_queue.push(right_node.left);\}\
+    \}\
+    return true;\
+\};\
+\
+\
+recursive solution\
+\
+var isSymmetric = function(root) \
+\{\
+    if(root === null)\{return true;\}\
+    return isMirror(root.left, root.right)\
+\};\
+\
+var isMirror = function(left, right)\
+\{\
+    //only one is null\
+    if((left !== null || right !== null) && (left === null || right === null))\
+    \{\
+        return false;\
+    \}\
+    if(left && right)\
+    \{\
+        //both are not null; check values, then check children recursively\
+        if(left.val !== right.val)\
+        \{\
+            return false;\
+        \}\
+    return isMirror(left.left, right.right) && isMirror(left.right, right.left)\
+    \} else \{return true;\}//passing first check AND failing second check => both must be null\
+\}\
+\
+\
+https://leetcode.com/problems/binary-tree-level-order-traversal-ii/\
+\
+var levelOrderBottom = function(root) \
+\{\
+    let return_ary = [];\
+    if(!root)\{return return_ary;\}\
+    return_ary.push([root.val]);\
+    let queue = [root.left, root.right];\
+    while(queue.length > 0)\
+    \{\
+        let temp = [];\
+        let values = [];\
+        while(queue.length > 0)\
+        \{    \
+            let node = queue.shift();\
+            if(node)\
+            \{\
+                values.push(node.val);\
+                if(node.left)\
+                \{\
+                    temp.push(node.left);\
+                \}\
+                if(node.right)\
+                \{\
+                    temp.push(node.right);\
+                \}\
+            \}\
+        \}\
+        if(values.length > 0)\{return_ary.unshift(values)\};\
+        queue = temp;\
+    \}\
+    return return_ary;\
+\};\
+\
+https://leetcode.com/problems/minimum-depth-of-binary-tree/\
+\
+var minDepth = function(root) \{\
+    if(!root)\{return 0;\}\
+    if(!root.left && !root.right)\{return 1;\}\
+    if(root.left && root.right)\{return 1 + Math.min(minDepth(root.left), minDepth(root.right))\}\
+    else if(root.left)\{return 1 + minDepth(root.left)\}\
+    else\{return 1 + minDepth(root.right)\}\
+\};\
+\
+https://leetcode.com/problems/path-sum/\
+\
+var hasPathSum = function(root, targetSum) \{\
+    if(root === null)\{return false;\}\
+    if(targetSum === root.val && !(root.left || root.right))\{return true;\}\
+    return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val)\
+\};\
+\
+https://leetcode.com/problems/pascals-triangle/\
+\
+var generate = function(numRows) \{\
+    let return_ary = [];\
+    for(let i = 0; i < numRows; i++)\
+    \{\
+        let row = [];\
+        for(let x = 0; x <= i; x++)\
+        \{\
+            if(return_ary[i - 1])\
+            \{\
+                let left_val = return_ary[i - 1][x - 1] || 0;\
+                let right_val = return_ary[i - 1][x] || 0;\
+                row.push(left_val + right_val);\
+            \} else \{\
+                row.push(1);\
+            \}\
+        \}\
+        return_ary.push(row);\
+    \}\
+    return return_ary;\
+\};\
+\
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock/\
+\
+var maxProfit = function(prices) \
+\{\
+    let best_trade = 0;\
+    let low_price = prices[0];\
+    let high_price = 0;\
+    for(let i = 1; i < prices.length; i++)\
+    \{\
+        if(prices[i] < low_price)\
+        \{\
+            best_trade = high_price - low_price > best_trade ? high_price - low_price : best_trade;\
+            high_price = 0;\
+            low_price = prices[i];\
+        \} else \{\
+            high_price = high_price > prices[i] ? high_price : prices[i];\
+        \}\
+    \}\
+    best_trade = high_price - low_price > best_trade ? high_price - low_price : best_trade;\
+    return best_trade;\
+\};\
+\
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/\
+\
+var maxProfit = function(prices) \
+\{\
+    let best_trade = 0;\
+    let low_price = prices[0];\
+    let high_price = prices[0];\
+    for(let i = 1; i < prices.length; i++)\
+    \{\
+        if(prices[i] < high_price)\
+        \{\
+            best_trade += high_price - low_price > 0 ? high_price - low_price : 0;\
+            high_price = prices[i];\
+            low_price = prices[i];\
+        \} else \{\
+            high_price = prices[i];\
+        \}\
+    \}\
+    best_trade += high_price - low_price > 0 ? high_price - low_price : 0;\
+    return best_trade;\
+\};\
+\
+https://leetcode.com/problems/single-number/\
+\
+var singleNumber = function(nums) \{\
+    let dict = \{\};\
+    for(let i = 0; i < nums.length; i++)\
+    \{\
+        if(!dict[nums[i]])\{dict[nums[i]] = 1;\}\
+        else\{dict[nums[i]]++;\}\
+    \}\
+    return Object.keys(dict).filter(key => dict[key] === 1);\
+\};\
+\
+https://leetcode.com/problems/linked-list-cycle/\
+\
+var hasCycle = function(head) \
+\{\
+    let node = head;\
+    let prev_nodes = [];\
+    while(!prev_nodes.includes(node) && node !== null)\
+    \{\
+        prev_nodes.push(node);\
+        node = node.next;\
+    \}\
+    return node !== null;\
+\};}
