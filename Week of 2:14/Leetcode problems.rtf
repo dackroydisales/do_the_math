@@ -2,7 +2,7 @@
 \cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 {\*\expandedcolortbl;;}
-\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\margl1440\margr1440\vieww17720\viewh18780\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 https://leetcode.com/problems/pascals-triangle-ii/\
@@ -80,4 +80,321 @@ var isPalindrome = function(s) \
     return true;\
 \}\
 \
-}
+\
+https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/\
+\
+var twoSum = function(numbers, target) \
+\{\
+    for(let i = 0; i < numbers.length; i++)\
+    \{\
+        for(let j = i + 1; j < numbers.length; j++)\
+        \{\
+            if(numbers[i] + numbers[j] === target)\
+            \{\
+                return [i+1, j+1];\
+            \}\
+        \}\
+    \}\
+\};\
+\
+//inspired from submissions - given array is sorted and a solution is guaranteed, we can increase i when the sum is low and decrease j when the sum is high \
+\
+var twoSum = function(numbers, target) \
+\{\
+    let i = 0;\
+    let j = numbers.length - 1;\
+    while(numbers[i] + numbers[j] !== target)\
+    \{\
+        if(numbers[i] + numbers[j] < target)\
+        \{\
+            i++;\
+        \}\
+        else\
+        \{\
+            j--;\
+        \}\
+    \}\
+    return [i + 1, j + 1]\
+\};\
+\
+https://leetcode.com/problems/majority-element/\
+\
+var majorityElement = function(nums) \{\
+    let dict = \{\};\
+    for(let i = 0; i < nums.length; i++)\
+    \{\
+        if(!dict[nums[i]])\{dict[nums[i]] = 1;\}\
+        else\{dict[nums[i]] += 1;\}\
+        if(dict[nums[i]] > Math.floor(nums.length / 2))\{return nums[i];\}\
+    \}\
+\};\
+\
+//O(1) space - see algorithm from https://www.cs.utexas.edu/~moore/best-ideas/mjrty/\
+\
+var majorityElement = function(nums) \{\
+\
+    let count = 1;\
+    let best_guess = nums[0];\
+    for(let i = 1; i < nums.length; i++)\
+    \{\
+        if(nums[i] === best_guess)\
+        \{\
+            count++;\
+        \} else\
+        \{\
+            count--;\
+            if(count <= 0)\{best_guess = nums[i]; count = 1;\}\
+        \}\
+    \}\
+    return best_guess;\
+\};\
+\
+https://leetcode.com/problems/excel-sheet-column-title/\
+\
+var convertToTitle = function(n) \
+\{\
+    let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";\
+    if(n === 0)\{return ""\}\
+    else\{return convertToTitle(Math.floor((n - 1) / 26)) + alphabet[(n - 1) % 26]\}\
+\};\
+\
+//5 problems\
+\
+\
+https://leetcode.com/problems/combine-two-tables/\
+\
+//2 solutions\
+\
+SELECT FirstName, LastName, City, State FROM Person LEFT JOIN Address ON Person.PersonId = Address.PersonId\
+\
+SELECT FirstName, LastName, City, State FROM Person LEFT JOIN Address USING(PersonId)\
+\
+\
+https://leetcode.com/problems/second-highest-salary/\
+\
+SELECT MAX(Salary) AS SecondHighestSalary FROM Employee WHERE Salary < (SELECT MAX(Salary) FROM Employee)\
+\
+//different approach to examine LIMIT X, Y\
+\
+SELECT Salary AS SecondHighestSalary FROM Employee\
+    GROUP BY Salary\
+    ORDER BY Salary DESC\
+    LIMIT 1,1\
+\
+\
+https://leetcode.com/problems/customers-who-never-order/\
+\
+//use ON\
+\
+SELECT Name AS Customers FROM Customers WHERE Id NOT IN(\
+    SELECT CustomerId FROM Orders LEFT JOIN Customers ON(Orders.CustomerId = Customers.Id))\
+\
+\
+https://leetcode.com/problems/delete-duplicate-emails/\
+\
+DELETE p1 FROM Person p1, Person p2 WHERE p1.Email = p2.Email AND p1.Id > p2.Id\
+\
+https://leetcode.com/problems/happy-number/\
+\
+var isHappy = function(n) \
+\{\
+    let prevValues = [];\
+    while(n !== 1 && !prevValues.includes(n))\
+    \{\
+        prevValues.push(n);\
+        let temp = 0;\
+        while(n > 0)\
+        \{\
+            temp += (n % 10) * (n % 10);\
+            n = Math.floor(n/10);\
+        \}\
+        n = temp;\
+    \}\
+    if(n === 1)\{return true;\}\
+    return false;\
+\};\
+\
+//9 problems\
+\
+https://leetcode.com/problems/remove-linked-list-elements/\
+\
+var removeElements = function(head, val) \
+\{\
+    let return_node = null;\
+    let node = head;\
+    let prev = null;\
+    while(node)\
+    \{\
+        if(node.val === val)\
+        \{\
+            if(prev)\
+            \{\
+                prev.next = node.next;\
+            \} else \{\
+                head = node.next;\
+            \}\
+        \} else\
+        \{\
+            prev = node;\
+        \}\
+        node = node.next;\
+    \}\
+    return head;  \
+\};\
+\
+https://leetcode.com/problems/count-primes/\
+\
+//Sieve of Eratosthenes - real-time tabulation of prime values\
+\
+var countPrimes = function(n) \
+\{\
+    let count = 0;\
+    let notPrime = Array(n).fill(false)\
+    for(let i = 2; i < n; i++)\
+    \{\
+        if(!notPrime[i])\{count++;\}\
+        for(let j = 2; i * j < n; j++)\
+        \{\
+            notPrime[i*j] = true;\
+        \}\
+    \}\
+    return count;\
+\};\
+\
+\
+https://leetcode.com/problems/isomorphic-strings/\
+\
+var isIsomorphic = function(s, t) \{\
+    s = IsoTest(s);\
+    t = IsoTest(t);\
+    return s === t;\
+\};\
+\
+function IsoTest(str)\{\
+    let index = 0;\
+    let searle = \{\}\
+    let return_str = ""\
+    for(let i = 0; i < str.length; i++)\
+    \{\
+        if(!searle[str[i]])\
+        \{\
+            searle[str[i]] = String.fromCharCode("A".charCodeAt(0) + index);\
+            index++;\
+        \}\
+        return_str += searle[str[i]];\
+    \}\
+    return return_str;\
+\}\
+\
+https://leetcode.com/problems/reverse-linked-list/\
+\
+//recursive solution\
+\
+var reverseList = function(head) \
+\{\
+    if(!head || !head.next)\{return head;\}\
+    let node = head;\
+    while(node.next && node.next.next)\{node = node.next;\}\
+    let temp = node.next;\
+    node.next = null;\
+    node = temp;\
+    node.next = reverseList(head);\
+    return node;\
+\};\
+\
+//iterative solution\
+\
+var reverseList = function(head) \
+\{\
+    let newHead = null;\
+    while(head)\
+    \{\
+        let next = head.next;//save the 'next'/'previous' node\
+        head.next = newHead;//redirect to point down the tree\
+        newHead = head;//update the new head as the latest entry\
+        head = next;//move 'down'/'up' the list\
+    \}\
+    return newHead;\
+\};\
+\
+https://leetcode.com/problems/implement-stack-using-queues\
+\
+var MyStack = function() \{\
+    this.first_queue = []\
+    this.last_queue = []\
+\};\
+\
+/**\
+ * Push element x onto stack. \
+ * @param \{number\} x\
+ * @return \{void\}\
+ */\
+MyStack.prototype.push = function(x) \{\
+    this.last_queue.push(x);\
+    while(this.first_queue.length)\{this.last_queue.push(this.first_queue.shift())\}\
+    this.first_queue = this.last_queue;\
+    this.last_queue = [];\
+\};\
+\
+/**\
+ * Removes the element on top of the stack and returns that element.\
+ * @return \{number\}\
+ */\
+MyStack.prototype.pop = function() \{\
+    return this.first_queue.shift();\
+\};\
+\
+/**\
+ * Get the top element.\
+ * @return \{number\}\
+ */\
+MyStack.prototype.top = function() \{\
+    return this.first_queue[0];\
+\};\
+\
+/**\
+ * Returns whether the stack is empty.\
+ * @return \{boolean\}\
+ */\
+MyStack.prototype.empty = function() \{\
+    return this.first_queue.length === 0;\
+\};\
+\
+https://leetcode.com/problems/summary-ranges\
+\
+var summaryRanges = function(nums) \
+\{\
+    let return_arr = [];\
+    let prev = null;\
+    let range_start = null;\
+    for(let i = 0; i < nums.length; i++)\
+    \{\
+        if(prev !== null)\
+        \{\
+            if(nums[i] - prev !== 1)\
+            \{\
+                if(range_start !== null)\
+                \{\
+                    return_arr.push(`$\{range_start\}->$\{prev\}`);\
+                \} else \{\
+                    return_arr.push(`$\{prev\}`);\
+                \}\
+                range_start = null;\
+            \} else if(range_start === null)\
+            \{\
+                range_start = prev;\
+            \}\
+        \}\
+        prev = nums[i];\
+    \}\
+    if(prev !== null)\
+    \{\
+        if(range_start !== null)\
+        \{\
+            return_arr.push(`$\{range_start\}->$\{prev\}`);\
+        \} else \{\
+            return_arr.push(`$\{prev\}`);\
+        \}\
+    \}\
+    return return_arr;\
+\};}
